@@ -3,7 +3,6 @@ window.onload = function(){
   var currentNumber = 0,
       firstNumber = 0,
       secondNumber = 0,
-      currentNumberLength = 1,
       symbolUsed = undefined,
       symbolButtonPressed = false,
       buttonOne = document.getElementById('one'),
@@ -26,9 +25,8 @@ window.onload = function(){
 // Functions
   // Adds Digit to the First Number
   function addDigit(number){
-    if(currentNumberLength <= 7){
+    if(currentNumber.toString().length <= 6){
       currentNumber = currentNumber * 10 + number;
-      currentNumberLength++
       answerBox.innerHTML = currentNumber;
     }
   }
