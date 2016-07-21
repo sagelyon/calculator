@@ -6,7 +6,10 @@ window.onload = function(){
         'second': 0,
         'symbol': undefined
       },
-      symbolButtonPressed = false,
+      check = {
+        'symbolButton': false,
+        'addDigits': true
+      },
       buttonOne = document.getElementById('one'),
       buttonTwo = document.getElementById('two'),
       buttonThree = document.getElementById('three'),
@@ -27,9 +30,11 @@ window.onload = function(){
 // Functions
   // Adds Digit to the First Number
   function addDigit(number){
-    if(calcObj.current.toString().length <= 13){
-      calcObj.current = calcObj.current * 10 + number;
-      answerBox.innerHTML = calcObj.current;
+    if(check.addDigits == true){
+      if(calcObj.current.toString().length <= 13){
+        calcObj.current = calcObj.current * 10 + number;
+        answerBox.innerHTML = calcObj.current;
+      }
     }
   }
   // Clears the Calculator
@@ -37,7 +42,7 @@ window.onload = function(){
     calcObj.first = 0;
     calcObj.second = 0;
     calcObj.current = 0;
-    symbolButtonPressed = false;
+    check.symbolButton = false;
     calcObj.symbol = undefined;
     answerBox.innerHTML = 0;
   }
@@ -46,16 +51,18 @@ window.onload = function(){
       calcObj.first = calcObj.current;
       calcObj.current = 0;
       calcObj.symbol = symbol;
-      symbolButtonPressed = true;
+      check.symbolButton = true;
+      check.addDigits = true;
       answerBox.innerHTML = calcObj.first;
     }
   // Evaluates the problem
   function Calculate(){
-    if(symbolButtonPressed == true){
+    if(check.symbolButton == true){
       calcObj.second = calcObj.current;
       calcObj.current = eval(calcObj.first += calcObj.symbol += calcObj.second);
       answerBox.innerHTML  = calcObj.current;
-      symbolButtonPressed = false;
+      check.symbolButton = false;
+      check.addDigits = false;
     }
   }
 // Add Functions to the Buttons
