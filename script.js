@@ -57,6 +57,7 @@ window.onload = function(){
     check.addDigits = true;
     check.decimal = false;
     answerBox.innerHTML = 0;
+    decimalPlace = 10;
   }
   // Function that Will Determine Whether or Not You Will Add,Subtract,ect...
   function newSymbol(symbol){
@@ -67,6 +68,7 @@ window.onload = function(){
       check.addDigits = true;
       check.decimal = false;
       answerBox.innerHTML = calcObj.first;
+      decimalPlace = 10;
     }
   // Adds a Decimal Point
   function addDecimal(){
@@ -81,6 +83,7 @@ window.onload = function(){
       check.symbolButton = false;
       check.addDigits = false;
       check.decimal = false;
+      decimalPlace = 10;
     }
   }
 // Add Functions to the Buttons
