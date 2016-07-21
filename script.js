@@ -43,20 +43,18 @@ window.onload = function(){
   }
   // Function that will determine whether or not you will add,subtract,ect...
   function newSymbol(symbol){
-    if(symbolButtonPressed == false){
       calcObj.first = calcObj.current;
       calcObj.current = 0;
       calcObj.symbol = symbol;
       symbolButtonPressed = true;
       answerBox.innerHTML = calcObj.first;
     }
-  }
   // Evaluates the problem
   function Calculate(){
     if(symbolButtonPressed == true){
       calcObj.second = calcObj.current;
-      calcObj.current = 0;
-      answerBox.innerHTML  = eval(calcObj.first += calcObj.symbol += calcObj.second);
+      calcObj.current = eval(calcObj.first += calcObj.symbol += calcObj.second);
+      answerBox.innerHTML  = calcObj.current;
       symbolButtonPressed = false;
     }
   }
