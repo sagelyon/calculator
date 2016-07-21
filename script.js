@@ -25,7 +25,7 @@ window.onload = function(){
 // Functions
   // Adds Digit to the First Number
   function addDigit(number){
-    if(currentNumber.toString().length <= 6){
+    if(currentNumber.toString().length <= 13){
       currentNumber = currentNumber * 10 + number;
       answerBox.innerHTML = currentNumber;
     }
@@ -53,9 +53,12 @@ window.onload = function(){
   }
   // Evaluates the problem
   function Calculate(){
-    secondNumber = currentNumber;
-    currentNumber = 0;
-    answerBox.innerHTML  = eval(firstNumber += symbolUsed += secondNumber);
+    if(symbolButtonPressed == true){
+      secondNumber = currentNumber;
+      currentNumber = 0;
+      answerBox.innerHTML  = eval(firstNumber += symbolUsed += secondNumber);
+      symbolButtonPressed = false;
+    }
   }
 // Add Functions to the Buttons
   buttonOne.onclick = function(){addDigit(1);};
