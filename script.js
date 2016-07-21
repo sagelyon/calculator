@@ -39,7 +39,6 @@ window.onload = function(){
     calcObj.current = 0;
     symbolButtonPressed = false;
     calcObj.symbol = undefined;
-    calcObj.currentLength = 1;
     answerBox.innerHTML = 0;
   }
   // Function that will determine whether or not you will add,subtract,ect...
@@ -47,7 +46,6 @@ window.onload = function(){
     if(symbolButtonPressed == false){
       calcObj.first = calcObj.current;
       calcObj.current = 0;
-      calcObj.currentLength = 1;
       calcObj.symbol = symbol;
       symbolButtonPressed = true;
       answerBox.innerHTML = calcObj.first;
