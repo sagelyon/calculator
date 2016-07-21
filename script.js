@@ -8,8 +8,10 @@ window.onload = function(){
       },
       check = {
         'symbolButton': false,
-        'addDigits': true
+        'addDigits': true,
+        'decimal': false
       },
+      decimalPlace = 10,
       buttonOne = document.getElementById('one'),
       buttonTwo = document.getElementById('two'),
       buttonThree = document.getElementById('three'),
@@ -26,14 +28,22 @@ window.onload = function(){
       buttonSubtract = document.getElementById('subtract'),
       buttonAdd = document.getElementById('add'),
       buttonEqual = document.getElementById('equal'),
-      answerBox = document.getElementById('answerBox');
+      answerBox = document.getElementById('answerBox'),
+      buttonDecimal = document.getElementById('decimal');
 // Functions
   // Adds Digit to the First Number
   function addDigit(number){
     if(check.addDigits == true){
       if(calcObj.current.toString().length <= 13){
-        calcObj.current = calcObj.current * 10 + number;
-        answerBox.innerHTML = calcObj.current;
+        if (check.decimal == true) {
+          calcObj.current = number / decimalPlace  + calcObj.current;
+          answerBox.innerHTML = calcObj.current;
+          decimalPlace = decimalPlace * 10;
+        }
+        if(check.decimal == false){
+          calcObj.current = calcObj.current * 10 + number;
+          answerBox.innerHTML = calcObj.current;
+        }
       }
     }
   }
@@ -42,20 +52,27 @@ window.onload = function(){
     calcObj.first = 0;
     calcObj.second = 0;
     calcObj.current = 0;
-    check.symbolButton = false;
     calcObj.symbol = undefined;
+    check.symbolButton = false;
+    check.addDigits = true;
+    check.decimal = false;
     answerBox.innerHTML = 0;
   }
-  // Function that will determine whether or not you will add,subtract,ect...
+  // Function that Will Determine Whether or Not You Will Add,Subtract,ect...
   function newSymbol(symbol){
       calcObj.first = calcObj.current;
       calcObj.current = 0;
       calcObj.symbol = symbol;
       check.symbolButton = true;
       check.addDigits = true;
+      check.decimal = false;
       answerBox.innerHTML = calcObj.first;
     }
-  // Evaluates the problem
+  // Adds a Decimal Point
+  function addDecimal(){
+      check.decimal = true;
+  }
+  // Evaluates the Problem
   function Calculate(){
     if(check.symbolButton == true){
       calcObj.second = calcObj.current;
@@ -63,6 +80,7 @@ window.onload = function(){
       answerBox.innerHTML  = calcObj.current;
       check.symbolButton = false;
       check.addDigits = false;
+      check.decimal = false;
     }
   }
 // Add Functions to the Buttons
@@ -82,4 +100,5 @@ window.onload = function(){
   buttonAdd.onclick = function(){newSymbol('+');};
   buttonSubtract.onclick = function(){newSymbol('-');};
   buttonEqual.onclick = function(){Calculate();};
+  buttonDecimal.onclick = function(){addDecimal();};
 };
