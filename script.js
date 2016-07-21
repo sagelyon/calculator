@@ -1,9 +1,11 @@
 window.onload = function(){
 // Declaring Variables
-  var currentNumber = 0,
-      firstNumber = 0,
-      secondNumber = 0,
-      symbolUsed = undefined,
+  var calcObj = {
+        'current': 0,
+        'first': 0,
+        'second': 0,
+        'symbol': undefined
+      },
       symbolButtonPressed = false,
       buttonOne = document.getElementById('one'),
       buttonTwo = document.getElementById('two'),
@@ -25,38 +27,38 @@ window.onload = function(){
 // Functions
   // Adds Digit to the First Number
   function addDigit(number){
-    if(currentNumber.toString().length <= 13){
-      currentNumber = currentNumber * 10 + number;
-      answerBox.innerHTML = currentNumber;
+    if(calcObj.current.toString().length <= 13){
+      calcObj.current = calcObj.current * 10 + number;
+      answerBox.innerHTML = calcObj.current;
     }
   }
   // Clears the Calculator
   function Clear(){
-    firstNumber = 0;
-    secondNumber = 0;
-    currentNumber = 0;
+    calcObj.first = 0;
+    calcObj.second = 0;
+    calcObj.current = 0;
     symbolButtonPressed = false;
-    symbolUsed = undefined;
-    currentNumberLength = 1;
+    calcObj.symbol = undefined;
+    calcObj.currentLength = 1;
     answerBox.innerHTML = 0;
   }
   // Function that will determine whether or not you will add,subtract,ect...
   function newSymbol(symbol){
     if(symbolButtonPressed == false){
-      firstNumber = currentNumber;
-      currentNumber = 0;
-      currentNumberLength = 1;
-      symbolUsed = symbol;
+      calcObj.first = calcObj.current;
+      calcObj.current = 0;
+      calcObj.currentLength = 1;
+      calcObj.symbol = symbol;
       symbolButtonPressed = true;
-      answerBox.innerHTML = firstNumber;
+      answerBox.innerHTML = calcObj.first;
     }
   }
   // Evaluates the problem
   function Calculate(){
     if(symbolButtonPressed == true){
-      secondNumber = currentNumber;
-      currentNumber = 0;
-      answerBox.innerHTML  = eval(firstNumber += symbolUsed += secondNumber);
+      calcObj.second = calcObj.current;
+      calcObj.current = 0;
+      answerBox.innerHTML  = eval(calcObj.first += calcObj.symbol += calcObj.second);
       symbolButtonPressed = false;
     }
   }
@@ -72,11 +74,9 @@ window.onload = function(){
   buttonNine.onclick = function(){addDigit(9);};
   buttonZero.onclick = function(){addDigit(0);};
   buttonClear.onclick = function(){Clear();};
-
   buttonDivide.onclick = function(){newSymbol('/');};
   buttonMultiply.onclick = function(){newSymbol('*');};
   buttonAdd.onclick = function(){newSymbol('+');};
   buttonSubtract.onclick = function(){newSymbol('-');};
-
   buttonEqual.onclick = function(){Calculate();};
 };
