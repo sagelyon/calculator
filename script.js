@@ -62,13 +62,15 @@ window.onload = function(){
   }
   // Function that Will Determine Whether or Not You Will Add,Subtract,ect...
   function newSymbol(symbol){
-      calcObj.first = Number(calcObj.current);
-      calcObj.current = '0';
-      calcObj.symbol = symbol;
-      check.symbolButton = true;
-      check.addDigits = true;
-      check.decimal = false;
-      answerBox.innerHTML = calcObj.first;
+    if(check.symbolButton == false){
+        calcObj.first = Number(calcObj.current);
+        calcObj.current = '0';
+        calcObj.symbol = symbol;
+        check.symbolButton = true;
+        check.addDigits = true;
+        check.decimal = false;
+        answerBox.innerHTML = calcObj.first;
+      }
     }
   // Evaluates the Problem
   function Calculate(){
