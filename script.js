@@ -35,8 +35,7 @@ window.onload = function(){
     if(check.addDigits == true && check.decimal == false){
       if (number == '.') {
         check.decimal = true;
-      }
-      if(calcObj.current[0] == '0'){
+      }else if(calcObj.current[0] == '0'){
         calcObj.current = calcObj.current.slice(1);
       }
       if(calcObj.current.length <= 13){
@@ -44,9 +43,6 @@ window.onload = function(){
           answerBox.innerHTML = calcObj.current;
       }
     }else if (number != '.') {
-      if(calcObj.current[0] == '0'){
-        calcObj.current = calcObj.current.slice(1);
-      }
       if(calcObj.current.length <= 13){
           calcObj.current = calcObj.current + number;
           answerBox.innerHTML = calcObj.current;
