@@ -32,6 +32,9 @@ window.onload = function(){
   // Adds Digit to the First Number
   function addDigit(number){
     if(check.addDigits == true){
+      if(calcObj.current[0] == '0'){
+        calcObj.current = calcObj.current.slice(1);
+      }
       if(calcObj.current.length <= 13){
           calcObj.current = calcObj.current + number;
           answerBox.innerHTML = calcObj.current;
