@@ -8,7 +8,8 @@ window.onload = function(){
       },
       check = {
         'symbolButton': false,
-        'addDigits': true
+        'addDigits': true,
+        'decimal': false
       },
       buttonOne = document.getElementById('one'),
       buttonTwo = document.getElementById('two'),
@@ -31,7 +32,18 @@ window.onload = function(){
 // Functions
   // Adds Digit to the First Number
   function addDigit(number){
-    if(check.addDigits == true){
+    if(check.addDigits == true && check.decimal == false){
+      if (number == '.') {
+        check.decimal = true;
+      }
+      if(calcObj.current[0] == '0'){
+        calcObj.current = calcObj.current.slice(1);
+      }
+      if(calcObj.current.length <= 13){
+          calcObj.current = calcObj.current + number;
+          answerBox.innerHTML = calcObj.current;
+      }
+    }else if (number != '.') {
       if(calcObj.current[0] == '0'){
         calcObj.current = calcObj.current.slice(1);
       }
@@ -49,6 +61,7 @@ window.onload = function(){
     calcObj.symbol = undefined;
     check.symbolButton = false;
     check.addDigits = true;
+    check.decimal = false;
     answerBox.innerHTML = 0;
   }
   // Function that Will Determine Whether or Not You Will Add,Subtract,ect...
@@ -58,6 +71,7 @@ window.onload = function(){
       calcObj.symbol = symbol;
       check.symbolButton = true;
       check.addDigits = true;
+      check.decimal = false;
       answerBox.innerHTML = calcObj.first;
     }
   // Evaluates the Problem
@@ -68,9 +82,16 @@ window.onload = function(){
       answerBox.innerHTML  = calcObj.current;
       check.symbolButton = false;
       check.addDigits = false;
+      check.decimal = false;
     }
   }
+
+
+
+
+
 // Add Functions to the Buttons
+  buttonClear.onclick = function(){Clear();};
   buttonOne.onclick = function(){addDigit('1');};
   buttonTwo.onclick = function(){addDigit('2');};
   buttonThree.onclick = function(){addDigit('3');};
@@ -81,11 +102,11 @@ window.onload = function(){
   buttonEight.onclick = function(){addDigit('8');};
   buttonNine.onclick = function(){addDigit('9');};
   buttonZero.onclick = function(){addDigit('0');};
-  buttonClear.onclick = function(){Clear();};
+  buttonDecimal.onclick = function(){addDigit('.');};
   buttonDivide.onclick = function(){newSymbol('/');};
   buttonMultiply.onclick = function(){newSymbol('*');};
   buttonAdd.onclick = function(){newSymbol('+');};
   buttonSubtract.onclick = function(){newSymbol('-');};
   buttonEqual.onclick = function(){Calculate();};
-  buttonDecimal.onclick = function(){addDigit('.');};
+
 };
