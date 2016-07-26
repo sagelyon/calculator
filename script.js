@@ -1,15 +1,15 @@
 window.onload = function(){
 // Declaring Variables
   var calcObj = {
-        'current': '0',
-        'first': 0,
-        'second': 0,
-        'symbol': undefined
+        'current': '0', // Number that is being displayed currently
+        'first': 0, // First number in the equation
+        'second': 0, // Second number in the equation
+        'symbol': undefined // Symbol that you are using for the equation
       },
       check = {
-        'symbolButton': false,
-        'addDigits': true,
-        'decimal': false
+        'symbolButton': false, // Checks if any of the symbol buttons have been pressed
+        'addDigits': true, // Checks if you are allowed to add digits to the current number
+        'decimal': false // Checks if you haved used a decimal point in the current number
       },
       buttonOne = document.getElementById('one'),
       buttonTwo = document.getElementById('two'),
@@ -63,7 +63,7 @@ window.onload = function(){
   // Function that Will Determine Whether or Not You Will Add,Subtract,ect...
   function newSymbol(symbol){
     if(check.symbolButton == false){
-        calcObj.first = Number(calcObj.current);
+        calcObj.first = calcObj.current;
         calcObj.current = '0';
         calcObj.symbol = symbol;
         check.symbolButton = true;
@@ -75,16 +75,14 @@ window.onload = function(){
   // Evaluates the Problem
   function Calculate(){
     if(check.symbolButton == true){
-      calcObj.second = Number(calcObj.current);
-      calcObj.current = eval(calcObj.first += calcObj.symbol += calcObj.second);
+      calcObj.second = calcObj.current;
+      calcObj.current = math.round(eval(calcObj.first += calcObj.symbol += calcObj.second)*1e+13)/1e+13;
       answerBox.innerHTML  = calcObj.current;
       check.symbolButton = false;
       check.addDigits = false;
       check.decimal = false;
     }
   }
-
-
 
 
 
